@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -23,6 +25,9 @@ public class SpaceGame extends JFrame implements Runnable {
     private ArrayList<Integer> keysPressed = new ArrayList<Integer>();
     private JPanel mainPanel;
     private Renderer gameRenderer;
+
+    private int mouseX;
+    private int mouseY;
 
     private static SpaceGame game;
 
@@ -126,7 +131,6 @@ public class SpaceGame extends JFrame implements Runnable {
                 updatesPerSec++;
             }
 
-
             if (frameDelta >= 1) {
                 if (gameRenderer.isFrameRendered() == true) {
                     render();
@@ -135,8 +139,6 @@ public class SpaceGame extends JFrame implements Runnable {
                 }
 
             }
-
-
 
             //Done each Second
             if ((System.nanoTime()/1000000) - (secondTimer/1000000)>1000) {
@@ -149,9 +151,6 @@ public class SpaceGame extends JFrame implements Runnable {
             }
 
         }
-
-
-
     }
 
     private void render() {
@@ -210,6 +209,20 @@ public class SpaceGame extends JFrame implements Runnable {
         }
 
 
+    }
+
+    public class mouseMotionListner implements MouseMotionListener {
+
+        @Override
+        public void mouseDragged(MouseEvent mouseEvent) {
+
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent mouseEvent) {
+            mouseX = mouseEvent.getX();
+            mouseY = mouseEvent.getY();
+        }
     }
 
     public ArrayList<Entity> getGameEntities() {
