@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.text.html.parser.Entity;
 
+import Entities.*;
 import Graphics.Renderer;
 
 public class SpaceGame extends JFrame implements Runnable {
@@ -20,6 +20,8 @@ public class SpaceGame extends JFrame implements Runnable {
     private boolean gameIsRunning = false;
     private JPanel mainPanel;
     private Renderer gameRenderer;
+
+    private ArrayList<Entity> gameEntities = new ArrayList<Entity>();
 
     private ArrayList<Entity> entitiesToRender = new ArrayList<Entity>();
     private ArrayList<Integer> keysPressed = new ArrayList<Integer>();
@@ -39,6 +41,9 @@ public class SpaceGame extends JFrame implements Runnable {
      
     public void init(){
         gameIsRunning = true;
+        Ship testShip = new Ship(200,200,2);
+        gameEntities.add(testShip);
+
     }
     
     public void run(){
@@ -120,7 +125,13 @@ public class SpaceGame extends JFrame implements Runnable {
     }
     
     public void render(){
-        //NEED TO SET ENTITIES TO RENDER!!!!
+
+        for (int i=0; i < gameEntities.size();i++){
+            entitiesToRender.add(gameEntities.get(i));
+        }
+
+        gameRenderer.setEntitiesToRender(entitiesToRender);
+
         gameRenderer.setWindowWidth(this.getWidth());
         gameRenderer.setWindowHeight(this.getHeight());
         gameRenderer.repaint();

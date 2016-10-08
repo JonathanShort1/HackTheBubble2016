@@ -56,7 +56,11 @@ public class Renderer extends JLabel {
 
         //Loops through all of the entities to render.
         for (int i = 0; i < entitiesToRender.size(); i++) {
+            int x = (int)entitiesToRender.get(i).getxPos();
+            int y = (int)entitiesToRender.get(i).getyPos();
 
+            g2d.setColor(Color.green);
+            g2d.fillRect(x,y,100,100);
         }
 
         entitiesToRender.clear();
@@ -98,5 +102,10 @@ public class Renderer extends JLabel {
 
     public void setWindowHeight(int windowHeight) {
         this.windowHeight = windowHeight;
+    }
+
+
+    public void setEntitiesToRender(ArrayList<Entity> entitiesToRender) {
+        this.entitiesToRender = entitiesToRender;
     }
 }
