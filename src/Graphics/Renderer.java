@@ -1,6 +1,8 @@
 package Graphics;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.util.ArrayList;
@@ -66,7 +68,16 @@ public class Renderer extends JComponent {
         g2d.drawImage(stars,100,0,null);
 
         for (int i = 0; i < entitiesToRender.size(); i++) {
-            g2d.drawImage(entitiesToRender.get(i).getCurrentTexture(),(int)entitiesToRender.get(i).getxPos(), (int)entitiesToRender.get(i).getyPos(),null);
+            int x = (int)entitiesToRender.get(i).getxPos();
+            int y = (int)entitiesToRender.get(i).getyPos();
+
+            double rotationRequired = Math.toRadians (entitiesToRender.get(i).getAngle());
+            double locationX = 80 / 2;
+            double locationY = 80 / 2;
+            AffineTransform rotation = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+            AffineTransformOp rotationOp = new AffineTransformOp(rotation, AffineTransformOp.TYPE_BILINEAR);
+
+            g2d.drawImage(rotationOp.filter(entitiesToRender.get(i).getCurrentTexture(),null),x, y,null);
         }
 
 

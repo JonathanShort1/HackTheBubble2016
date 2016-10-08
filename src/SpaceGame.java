@@ -193,8 +193,20 @@ public class SpaceGame extends JFrame implements Runnable {
             else if(keysPressed.get(i) == KeyEvent.VK_DOWN){
                 gameEntities.get(1).setyPos(gameEntities.get(1).getyPos()+5);
             }
-            else if(keysPressed.get(i) == KeyEvent.VK_UP){
-                gameEntities.get(1).setyPos(gameEntities.get(1).getyPos()-5);
+            else if(keysPressed.get(i) == KeyEvent.VK_UP) {
+                gameEntities.get(1).setyPos(gameEntities.get(1).getyPos() - 5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_Q){
+                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_E){
+                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()-5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_OPEN_BRACKET){
+                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_CLOSE_BRACKET){
+                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()-5);
             }
         }
 
