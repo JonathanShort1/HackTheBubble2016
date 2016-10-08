@@ -13,6 +13,13 @@ public class Entity {
 
     private double xPos;
     private double yPos;
+    private int xDir;
+    private int yDir;
+    private int width;
+
+
+
+    private int height;
     private double velocity;
     private double angle;
     private double maxVelocity;
@@ -27,6 +34,38 @@ public class Entity {
     }
 
     private BufferedImage currentTexture;
+
+    public void update(){}
+
+    public void move(){
+        this.setxPos(this.getxPos() + this.velocity*this.getxDir());
+    }
+
+    // GETTERS & SETTERS
+
+    public double getMaxVelocity() {
+        return maxVelocity;
+    }
+
+    public void setMaxVelocity(double maxVelocity) {
+        this.maxVelocity = maxVelocity;
+    }
+
+    public int getxDir() {
+        return xDir;
+    }
+
+    public void setxDir(int xDir) {
+        this.xDir = xDir;
+    }
+
+    public int getyDir() {
+        return yDir;
+    }
+
+    public void setyDir(int yDir) {
+        this.yDir = yDir;
+    }
 
     public double getxPos() {
         return xPos;
@@ -56,7 +95,6 @@ public class Entity {
         this.angle = angle;
     }
 
-
     public double getVelocity() {
         return velocity;
     }
@@ -65,13 +103,19 @@ public class Entity {
         return angle;
     }
 
-    public void update(){}
-
-    public double getMaxVelocity() {
-        return maxVelocity;
+    public int getWidth() {
+        return width;
     }
 
-    public void setMaxVelocity(double maxVelocity) {
-        this.maxVelocity = maxVelocity;
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
