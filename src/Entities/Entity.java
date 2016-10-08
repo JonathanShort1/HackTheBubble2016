@@ -13,16 +13,12 @@ public class Entity {
 
     private double xPos;
     private double yPos;
-    private int xDir;
-    private int yDir;
+    private int increase = 2;
     private int width;
-
-
-
     private int height;
     private double velocity;
     private double angle;
-    private double maxVelocity;
+    private double maxVelocity = 10;
 
     public BufferedImage getCurrentTexture() {
         return currentTexture;
@@ -38,7 +34,62 @@ public class Entity {
     public void update(){}
 
     public void move(){
-        this.setxPos(this.getxPos() + this.velocity*this.getxDir());
+        if (this.getAngle()  > 180) {
+            this.setAngle(-180);
+        }
+        if (this.getAngle() < -180) {
+            this.setAngle(180);
+        }
+        double rad = Math.toRadians(this.getAngle());
+
+        if (this.getAngle() >= 0 && this.getAngle() <= 45){
+            this.setxPos(this.getxPos() + this.getVelocity());
+            this.setyPos(this.getyPos() + this.getVelocity()*Math.tan(rad));
+        }
+        else if (this.getAngle() > 45 && this.getAngle() <= 90){
+            rad = Math.toRadians(90-this.getAngle());
+            this.setxPos(this.getxPos() + this.getVelocity()*Math.tan(rad));
+            this.setyPos(this.getyPos() + this.getVelocity());
+        }
+        else if (this.getAngle() > 90 && this.getAngle() <= 135){
+            rad = Math.toRadians(this.getAngle() - 90);
+            this.setxPos(this.getxPos() + this.getVelocity()*-Math.tan(rad));
+            this.setyPos(this.getyPos() + this.getVelocity());
+        }
+        else if (this.getAngle() > 135 && this.getAngle() <= 180){
+            rad = Math.toRadians(180-this.getAngle());
+            this.setxPos(this.getxPos() - this.getVelocity());
+            this.setyPos(this.getyPos() + this.getVelocity()*Math.tan(rad));
+        }
+        else if (this.getAngle() > -180 && this.getAngle() <= -135){
+            rad = Math.toRadians(this.getAngle() + 180);
+            this.setxPos(this.getxPos() - this.getVelocity());
+            this.setyPos(this.getyPos() + this.getVelocity()*-Math.tan(rad));
+        }
+        else if (this.getAngle() > -135 && this.getAngle() <= -90){
+            rad = Math.toRadians(-(this.getAngle()+90));
+            this.setxPos(this.getxPos() + this.getVelocity()*-Math.tan(rad));
+            this.setyPos(this.getyPos() - this.getVelocity());
+        }
+        else if (this.getAngle() > -90 && this.getAngle() <= -45){
+            rad = Math.toRadians(this.getAngle() + 90);
+            this.setxPos(this.getxPos() + this.getVelocity()*Math.tan(rad));
+            this.setyPos(this.getyPos() - this.getVelocity());
+        }
+        else if (this.getAngle() > -45 && this.getAngle() <= 0){
+            rad = Math.toRadians(-this.getAngle());
+            this.setxPos(this.getxPos() + this.getVelocity());
+            this.setyPos(this.getyPos() + this.getVelocity()*-Math.tan(rad));
+        }
+
+
+        System.out.println(this.getVelocity()*Math.cos(rad));
+    }
+
+    public void accelerate(){
+        if (this.getVelocity() < this.getMaxVelocity()) {
+            this.setVelocity(this.getVelocity() + increase);
+        }
     }
 
     // GETTERS & SETTERS
@@ -49,22 +100,6 @@ public class Entity {
 
     public void setMaxVelocity(double maxVelocity) {
         this.maxVelocity = maxVelocity;
-    }
-
-    public int getxDir() {
-        return xDir;
-    }
-
-    public void setxDir(int xDir) {
-        this.xDir = xDir;
-    }
-
-    public int getyDir() {
-        return yDir;
-    }
-
-    public void setyDir(int yDir) {
-        this.yDir = yDir;
     }
 
     public double getxPos() {

@@ -173,42 +173,19 @@ public class SpaceGame extends JFrame implements Runnable {
     private void update() {
         for (int i = 0; i < keysPressed.size(); i++) {
             if(keysPressed.get(i) == KeyEvent.VK_D){
-                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()+5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_A){
-                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()-5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_S){
-                gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()+5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_W){
-                gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()-5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_RIGHT){
-                gameEntities.get(1).setxPos(gameEntities.get(1).getxPos()+5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_LEFT){
-                gameEntities.get(1).setxPos(gameEntities.get(1).getxPos()-5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_DOWN){
-                gameEntities.get(1).setyPos(gameEntities.get(1).getyPos()+5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_UP) {
-                gameEntities.get(1).setyPos(gameEntities.get(1).getyPos() - 5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_Q){
                 gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()+5);
             }
-            else if(keysPressed.get(i) == KeyEvent.VK_E){
+            else if(keysPressed.get(i) == KeyEvent.VK_A){
                 gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()-5);
             }
-            else if(keysPressed.get(i) == KeyEvent.VK_OPEN_BRACKET){
-                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()+5);
+            else if(keysPressed.get(i) == KeyEvent.VK_S){
+                gameEntities.get(0).accelerate();
             }
-            else if(keysPressed.get(i) == KeyEvent.VK_CLOSE_BRACKET){
-                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()-5);
+            else if(keysPressed.get(i) == KeyEvent.VK_W){
+               gameEntities.get(0).accelerate();
             }
         }
+        gameEntities.get(0).update();
 
     }
 

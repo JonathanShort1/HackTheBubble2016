@@ -7,8 +7,8 @@ package Entities;
 public class Ship extends Entity{
 
     private final int init = 0;
-    private final int maxVelocity  = 20;
-    private int changeSpeed = 5;
+    private final int maxVelocity  = 5;
+    private int changeSpeed = 1;
 
 
     private int ammo;
@@ -26,6 +26,25 @@ public class Ship extends Entity{
         this.bullets = new Bullet[3];
     }
 
+    @Override
+    public void update() {
+        this.move();
+        this.slowDown();
+    }
+
+    private void slowDown() {
+        if (this.getVelocity() > 0){
+            this.setVelocity(this.getVelocity() - changeSpeed);
+        }
+    }
+
+    private void shoot() {
+        if (bullets.length > 0) {
+
+        }
+    }
+
+    //GETTER & SETTERS
 
     public void setAmmo(int ammo) {
         this.ammo = ammo;
@@ -41,28 +60,5 @@ public class Ship extends Entity{
 
     public Bullet[] getBullets(){
         return bullets;
-    }
-
-    @Override
-    public void update() {
-        this.slowDown();
-    }
-
-    private void slowDown() {
-        if (this.getVelocity() > 0){
-            this.setVelocity(this.getVelocity() - changeSpeed);
-        }
-    }
-
-    private void accelerate() {
-        if (this.getVelocity() < maxVelocity) {
-            this.setVelocity(this.getVelocity() + changeSpeed);
-        }
-    }
-
-    private void shoot() {
-        if (bullets.length > 0) {
-
-        }
     }
 }
