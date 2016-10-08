@@ -57,6 +57,15 @@ public class Ship extends Entity{
         }
     }
 
+    public void isKill(String texturePath){
+       this.setCurrentTexture(texturePath);
+        this.ammo = 0;
+        while (getVelocity() > 0) {
+            this.slowDown();
+        }
+        setMaxVelocity(0);
+    }
+
 
     public void addBullet(Bullet bullet) {
         ammo++;
