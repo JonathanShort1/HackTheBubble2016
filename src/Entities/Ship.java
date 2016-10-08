@@ -11,6 +11,9 @@ public class Ship extends Entity{
     private double changeSpeed = 0.1;
 
 
+    private boolean isDead;
+
+
     private int ammo;
 
     private Bullet bullet;
@@ -25,7 +28,8 @@ public class Ship extends Entity{
         super.setWidth(width);
         super.setVelocity(init);
         super.setMaxVelocity(maxVelocity);
-        this.bullet = new Bullet(0,0,0,19,19,this);
+        this.bullet = new Bullet(0,0,0,74,19,this);
+        this.isDead = false;
     }
 
     @Override
@@ -64,6 +68,7 @@ public class Ship extends Entity{
             this.slowDown();
         }
         setMaxVelocity(0);
+        this.isDead = true;
     }
 
 
@@ -71,6 +76,10 @@ public class Ship extends Entity{
         ammo++;
     }
     //GETTER & SETTERS
+
+    public boolean isDead() {
+        return isDead;
+    }
 
     public void setAmmo(int ammo) {
         this.ammo = ammo;
