@@ -60,7 +60,13 @@ public class Renderer extends JComponent {
 
 
         for (int i = 0; i < entitiesToRender.size(); i++) {
-            g2d.setColor(Color.green);
+            if (i == 0){
+                g2d.setColor(Color.green);
+            }
+            else {
+                g2d.setColor(Color.red);
+            }
+
             g2d.fillRect((int)entitiesToRender.get(i).getxPos(),(int)entitiesToRender.get(i).getyPos(),100,100);
         }
 

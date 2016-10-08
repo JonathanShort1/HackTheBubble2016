@@ -78,7 +78,7 @@ public class SpaceGame extends JFrame implements Runnable {
         gameIsRunning = true;
 
         gameEntities.add(new Ship(200,200,0));
-
+        gameEntities.add(new Ship(400,200,0));
         mainThread = new Thread(this,"main");
         mainThread.start();
     }
@@ -183,6 +183,18 @@ public class SpaceGame extends JFrame implements Runnable {
             }
             else if(keysPressed.get(i) == KeyEvent.VK_W){
                 gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()-5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_RIGHT){
+                gameEntities.get(1).setxPos(gameEntities.get(1).getxPos()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_LEFT){
+                gameEntities.get(1).setxPos(gameEntities.get(1).getxPos()-5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_DOWN){
+                gameEntities.get(1).setyPos(gameEntities.get(1).getyPos()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_UP){
+                gameEntities.get(1).setyPos(gameEntities.get(1).getyPos()-5);
             }
         }
 
