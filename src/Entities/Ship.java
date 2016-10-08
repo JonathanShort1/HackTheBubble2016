@@ -7,8 +7,8 @@ package Entities;
 public class Ship extends Entity{
 
     private final int init = 0;
-    private final int maxVelocity  = 5;
-    private int changeSpeed = 1;
+    private final int maxVelocity  = 7;
+    private double changeSpeed = 0.1;
 
 
     private int ammo;
@@ -35,6 +35,15 @@ public class Ship extends Entity{
     private void slowDown() {
         if (this.getVelocity() > 0){
             this.setVelocity(this.getVelocity() - changeSpeed);
+            if (this.getVelocity() < 0) {
+                this.setVelocity(0);
+            }
+        }
+        if (this.getVelocity() < 0 ) {
+            this.setVelocity(this.getVelocity() + changeSpeed);
+            if (this.getVelocity() > 0){
+                this.setVelocity(0);
+            }
         }
     }
 

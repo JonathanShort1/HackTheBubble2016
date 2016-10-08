@@ -4,16 +4,13 @@ import Graphics.SpriteLoader;
 
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Peter on 08/10/16.
- */
 public class Entity {
 
     private final String imgDir = "sprites";
 
     private double xPos;
     private double yPos;
-    private int increase = 2;
+    private double increase = 0.2;
     private int width;
     private int height;
     private double velocity;
@@ -25,16 +22,17 @@ public class Entity {
     }
 
     public void setCurrentTexture(String texturePath) {
-        SpriteLoader spriteLoader =  new SpriteLoader(imgDir);
+        SpriteLoader spriteLoader = new SpriteLoader(imgDir);
         this.currentTexture = spriteLoader.getSprite(texturePath);
     }
 
     private BufferedImage currentTexture;
 
-    public void update(){}
+    public void update() {
+    }
 
-    public void move(){
-        if (this.getAngle()  > 180) {
+    public void move() {
+        if (this.getAngle() > 180) {
             this.setAngle(-180);
         }
         if (this.getAngle() < -180) {
@@ -42,53 +40,49 @@ public class Entity {
         }
         double rad = Math.toRadians(this.getAngle());
 
-        if (this.getAngle() >= 0 && this.getAngle() <= 45){
+        if (this.getAngle() >= 0 && this.getAngle() <= 45) {
             this.setxPos(this.getxPos() + this.getVelocity());
-            this.setyPos(this.getyPos() + this.getVelocity()*Math.tan(rad));
-        }
-        else if (this.getAngle() > 45 && this.getAngle() <= 90){
-            rad = Math.toRadians(90-this.getAngle());
-            this.setxPos(this.getxPos() + this.getVelocity()*Math.tan(rad));
+            this.setyPos(this.getyPos() + this.getVelocity() * Math.tan(rad));
+        } else if (this.getAngle() > 45 && this.getAngle() <= 90) {
+            rad = Math.toRadians(90 - this.getAngle());
+            this.setxPos(this.getxPos() + this.getVelocity() * Math.tan(rad));
             this.setyPos(this.getyPos() + this.getVelocity());
-        }
-        else if (this.getAngle() > 90 && this.getAngle() <= 135){
+        } else if (this.getAngle() > 90 && this.getAngle() <= 135) {
             rad = Math.toRadians(this.getAngle() - 90);
-            this.setxPos(this.getxPos() + this.getVelocity()*-Math.tan(rad));
+            this.setxPos(this.getxPos() + this.getVelocity() * -Math.tan(rad));
             this.setyPos(this.getyPos() + this.getVelocity());
-        }
-        else if (this.getAngle() > 135 && this.getAngle() <= 180){
-            rad = Math.toRadians(180-this.getAngle());
+        } else if (this.getAngle() > 135 && this.getAngle() <= 180) {
+            rad = Math.toRadians(180 - this.getAngle());
             this.setxPos(this.getxPos() - this.getVelocity());
-            this.setyPos(this.getyPos() + this.getVelocity()*Math.tan(rad));
-        }
-        else if (this.getAngle() > -180 && this.getAngle() <= -135){
+            this.setyPos(this.getyPos() + this.getVelocity() * Math.tan(rad));
+        } else if (this.getAngle() > -180 && this.getAngle() <= -135) {
             rad = Math.toRadians(this.getAngle() + 180);
             this.setxPos(this.getxPos() - this.getVelocity());
-            this.setyPos(this.getyPos() + this.getVelocity()*-Math.tan(rad));
-        }
-        else if (this.getAngle() > -135 && this.getAngle() <= -90){
-            rad = Math.toRadians(-(this.getAngle()+90));
-            this.setxPos(this.getxPos() + this.getVelocity()*-Math.tan(rad));
+            this.setyPos(this.getyPos() + this.getVelocity() * -Math.tan(rad));
+        } else if (this.getAngle() > -135 && this.getAngle() <= -90) {
+            rad = Math.toRadians(-(this.getAngle() + 90));
+            this.setxPos(this.getxPos() + this.getVelocity() * -Math.tan(rad));
             this.setyPos(this.getyPos() - this.getVelocity());
-        }
-        else if (this.getAngle() > -90 && this.getAngle() <= -45){
+        } else if (this.getAngle() > -90 && this.getAngle() <= -45) {
             rad = Math.toRadians(this.getAngle() + 90);
-            this.setxPos(this.getxPos() + this.getVelocity()*Math.tan(rad));
+            this.setxPos(this.getxPos() + this.getVelocity() * Math.tan(rad));
             this.setyPos(this.getyPos() - this.getVelocity());
-        }
-        else if (this.getAngle() > -45 && this.getAngle() <= 0){
+        } else if (this.getAngle() > -45 && this.getAngle() <= 0) {
             rad = Math.toRadians(-this.getAngle());
             this.setxPos(this.getxPos() + this.getVelocity());
-            this.setyPos(this.getyPos() + this.getVelocity()*-Math.tan(rad));
+            this.setyPos(this.getyPos() + this.getVelocity() * -Math.tan(rad));
         }
-
-
-        System.out.println(this.getVelocity()*Math.cos(rad));
     }
 
-    public void accelerate(){
+    public void accelerate() {
         if (this.getVelocity() < this.getMaxVelocity()) {
             this.setVelocity(this.getVelocity() + increase);
+        }
+    }
+
+    public void reverseAcceleration() {
+        if (this.getVelocity() > -this.getMaxVelocity()/2) {
+            this.setVelocity(this.getVelocity() - increase);
         }
     }
 
@@ -123,7 +117,7 @@ public class Entity {
     }
 
     public void setAngle(double angle) {
-        if(angle > 360){
+        if (angle > 360) {
             angle = angle % 360;
         }
 

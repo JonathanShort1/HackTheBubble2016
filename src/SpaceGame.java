@@ -68,7 +68,7 @@ public class SpaceGame extends JFrame implements Runnable {
 
     public static void main(String[] args) {
         System.setProperty("sun.java2d.opengl", "True");
-        game = new SpaceGame("Platformer Test");
+        game = new SpaceGame("Space Dodgeball");
         game.startNewGame();
         game.toFront();
     }
@@ -78,7 +78,7 @@ public class SpaceGame extends JFrame implements Runnable {
         gameIsRunning = true;
 
         gameEntities.add(new Ship(200,200,0,"Ship1.png"));
-        gameEntities.add(new Ship(400,200,0,"Ship2.png"));
+        gameEntities.add(new Ship(400,200,180,"Ship2.png"));
         mainThread = new Thread(this,"main");
         mainThread.start();
     }
@@ -160,32 +160,45 @@ public class SpaceGame extends JFrame implements Runnable {
         for (int i = 0; i < gameEntities.size(); i++) {
             entitiesToRender.add(gameEntities.get(i));
         }
-
-
         gameRenderer.setEntitiesToRender(entitiesToRender);
 
         gameRenderer.setWindowWidth(this.getWidth());
         gameRenderer.setWindowHeight(this.getHeight());
         gameRenderer.repaint();
-
     }
 
     private void update() {
         for (int i = 0; i < keysPressed.size(); i++) {
             if(keysPressed.get(i) == KeyEvent.VK_D){
-                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()+5);
+                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()+3);
             }
             else if(keysPressed.get(i) == KeyEvent.VK_A){
-                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()-5);
+                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()-3);
             }
             else if(keysPressed.get(i) == KeyEvent.VK_S){
-                gameEntities.get(0).accelerate();
+                gameEntities.get(0).reverseAcceleration();
             }
             else if(keysPressed.get(i) == KeyEvent.VK_W){
                gameEntities.get(0).accelerate();
             }
+            else if(keysPressed.get(i) == KeyEvent.VK_UP){
+                gameEntities.get(1).accelerate();
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_DOWN){
+                gameEntities.get(1).reverseAcceleration();
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_LEFT){
+                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()-3);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_RIGHT){
+                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()+3);
+            }
         }
-        gameEntities.get(0).update();
+
+        for (int i = 0; i < gameEntities.size(); i++) {
+            gameEntities.get(i).update();
+        }
+
 
     }
 
@@ -209,8 +222,6 @@ public class SpaceGame extends JFrame implements Runnable {
         public void keyTyped(KeyEvent arg0) {
 
         }
-
-
     }
 
     public class mouseMotionListner implements MouseMotionListener {
