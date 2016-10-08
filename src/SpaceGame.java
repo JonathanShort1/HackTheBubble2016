@@ -248,9 +248,13 @@ public class SpaceGame extends JFrame implements Runnable {
             }
             if (((Ship)gameEntities.get(i)).getBullet().getxPos() + ((Ship)gameEntities.get(i)).getBullet().getWidth() > mainPanel.getWidth()) {
                 if (((Ship) gameEntities.get(i)).getBullet().getAngle() > 0) {
-                    ((Ship) gameEntities.get(i)).getBullet().setAngle(-1*(180 - ((Ship)gameEntities.get(i)).getBullet().getAngle()));
+                    ((Ship) gameEntities.get(i)).getBullet().setAngle((180 - ((Ship)gameEntities.get(i)).getBullet().getAngle()));
+                    System.out.println("Reached");
                 } else {
                     ((Ship) gameEntities.get(i)).getBullet().setAngle(-1*(180 + ((Ship)gameEntities.get(i)).getBullet().getAngle()));
+                }
+                if (((Ship) gameEntities.get(i)).getBullet().getAngle() == 0) {
+                    ((Ship) gameEntities.get(i)).getBullet().setAngle(180);
                 }
             }
             if (((Ship)gameEntities.get(i)).getBullet().getyPos() < 0) {
