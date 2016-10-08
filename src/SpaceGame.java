@@ -1,17 +1,15 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import Entities.Bullet;
+import Entities.Entity;
+import Entities.Ship;
+import Graphics.Renderer;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import Entities.*;
-import Graphics.Renderer;
 
 public class SpaceGame extends JFrame implements Runnable {
     private static final long serialVersionUID = 1L;
@@ -76,9 +74,12 @@ public class SpaceGame extends JFrame implements Runnable {
 
     private void startNewGame() {
         gameIsRunning = true;
+        Ship ship1 = new Ship(200,200,0, 80, 80,"Ship1.png");
+        gameEntities.add(ship1);
 
-        gameEntities.add(new Ship(200,200,0, 80, 80,"Ship1.png"));
-        gameEntities.add(new Ship(400,200,180, 80, 80,"Ship2.png"));
+        Ship ship2 = new Ship(400,200,180, 80, 80,"Ship2.png");
+        gameEntities.add(ship2);
+
         mainThread = new Thread(this,"main");
         mainThread.start();
     }
@@ -159,7 +160,19 @@ public class SpaceGame extends JFrame implements Runnable {
 
         for (int i = 0; i < gameEntities.size(); i++) {
             entitiesToRender.add(gameEntities.get(i));
+
+            if (gameEntities.get(i) instanceof  Ship){
+                Bullet bullet = ((Ship) gameEntities.get(i)).getBullet();
+
+                if (bullet.isInFlight()){
+                    entitiesToRender.add(bullet);
+                }
+
+            }
         }
+
+
+
         gameRenderer.setEntitiesToRender(entitiesToRender);
 
         gameRenderer.setWindowWidth(this.getWidth());
@@ -193,10 +206,25 @@ public class SpaceGame extends JFrame implements Runnable {
             else if(keysPressed.get(i) == KeyEvent.VK_RIGHT){
                 gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()+3);
             }
+            else if(keysPressed.get(i) == KeyEvent.VK_SPACE){
+                if (gameEntities.get(0) instanceof Ship){
+                    ((Ship) gameEntities.get(0)).shoot();
+                }
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_NUMPAD0){
+                if (gameEntities.get(1) instanceof Ship){
+                    ((Ship) gameEntities.get(1)).shoot();
+                }
+            }
+
         }
 
         for (int i = 0; i < gameEntities.size(); i++) {
             gameEntities.get(i).update();
+
+            if (gameEntities.get(i) instanceof Ship){
+                ((Ship) gameEntities.get(i)).getBullet().move();
+            }
         }
 
         //Edge of board

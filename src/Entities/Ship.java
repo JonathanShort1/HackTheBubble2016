@@ -13,10 +13,10 @@ public class Ship extends Entity{
 
     private int ammo;
 
-    private Bullet[] bullets;
+    private Bullet bullet;
 
-    public Ship(double xPos, double yPos, double angle, double width, double height, String texturePath) {
-        this.ammo = init;
+    public Ship(double xPos, double yPos, double angle, int width, int height, String texturePath) {
+        this.ammo = 1;
         super.setCurrentTexture(texturePath);
         super.setAngle(angle);
         super.setxPos(xPos);
@@ -25,7 +25,7 @@ public class Ship extends Entity{
         super.setWidth(width);
         super.setVelocity(init);
         super.setMaxVelocity(maxVelocity);
-        this.bullets = new Bullet[3];
+        this.bullet = new Bullet(0,0,0,this);
     }
 
     @Override
@@ -49,27 +49,33 @@ public class Ship extends Entity{
         }
     }
 
-    private void shoot() {
-        if (bullets.length > 0) {
 
+    public void shoot(){
+        if (ammo >= 1) {
+            bullet.fire();
+            ammo--;
         }
     }
 
+
+    public void addBullet(Bullet bullet) {
+        ammo++;
+    }
     //GETTER & SETTERS
 
     public void setAmmo(int ammo) {
         this.ammo = ammo;
     }
 
-    public void setBullets(Bullet[] bullets) {
-        this.bullets = bullets;
+    public void setBullets(Bullet bullet) {
+        this.bullet = bullet;
     }
 
     public int getAmmo() {
         return 0;
     }
 
-    public Bullet[] getBullets(){
-        return bullets;
+    public Bullet getBullet(){
+        return bullet;
     }
 }
