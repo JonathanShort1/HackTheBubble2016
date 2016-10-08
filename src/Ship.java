@@ -1,5 +1,5 @@
 /**
- *
+ *  Created by Peter on 08/10/16.
  */
 
 public class Ship extends Entity{
@@ -12,11 +12,21 @@ public class Ship extends Entity{
 
     public Ship() {
         this.ammo = init;
-        this.angle = init;
-        this.velocity = init;
+        super.setAngle(0);
+        super.setxPos(0);
+        super.setyPos(0);
+        super.setVelocity(0);
         this.bullets = new Bullet[3];
     }
 
+
+    public void setAmmo(int ammo) {
+        this.ammo = ammo;
+    }
+
+    public void setBullets(Bullet[] bullets) {
+        this.bullets = bullets;
+    }
 
     public int getAmmo() {
         return 0;
@@ -25,5 +35,7 @@ public class Ship extends Entity{
     public Bullet[] getBullets(){
         return bullets;
     }
+
+
 
 }
