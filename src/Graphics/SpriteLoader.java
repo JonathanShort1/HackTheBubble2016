@@ -27,7 +27,7 @@ public class SpriteLoader {
 
     //loads sprite as buffered image
     private BufferedImage loadSprite(String path){
-        File img = new File(dirPath + path);
+        File img = new File(dirPath + "/" + path);
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File(path));
