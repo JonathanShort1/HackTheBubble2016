@@ -1,9 +1,11 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.text.html.parser.Entity;
 
 import Graphics.Renderer;
 
@@ -18,6 +20,9 @@ public class SpaceGame extends JFrame implements Runnable {
     private boolean gameIsRunning = false;
     private JPanel mainPanel;
     private Renderer gameRenderer;
+
+    private ArrayList<Entity> entitiesToRender = new ArrayList<Entity>();
+    private ArrayList<Integer> keysPressed = new ArrayList<Integer>();
     
     private static SpaceGame spaceGame;
     
@@ -26,24 +31,99 @@ public class SpaceGame extends JFrame implements Runnable {
         spaceGame = new SpaceGame("Hello World");
         spaceGame.init();
         spaceGame.toFront();
+
+        spaceGame.run();
         
         
     }
      
     public void init(){
-        
+        gameIsRunning = true;
     }
     
     public void run(){
-        
+        //Counts the number of seconds the thread has been running for
+        long totalSecondsRunning = 0;
+
+        //Used to count when a second has elapsed for displaying ups and fps.
+        long secondTimer = System.nanoTime();
+
+		/*
+		 * Keeps track of the last time the program updated the thread
+		 * or displayed a new frame.
+		 */
+        long updateLastTime = System.nanoTime();
+        long frameLastTime = System.nanoTime();
+
+		/*
+		 * The number of nano seconds the program needs to wait before updating/
+		 * displaying a frame.
+		 */
+        final double nanoSecsBetweenUpdates = 1000000000.0/MAX_UPS;
+        final double nanoSecsBetweenFrames = 1000000000.0/maxFPS;
+
+		/*
+		 * When these deltas = 1, the number of nanoseconds above
+		 * have passed.
+		 */
+        double updateDelta = 0;
+        double frameDelta = 0;
+
+        int fps = 0;
+        int updatesPerSec = 0;
+
+        gameRenderer.repaint();
+
+        while (gameIsRunning) {
+            long currentTime = System.nanoTime();
+            updateDelta = updateDelta + (currentTime-updateLastTime)/nanoSecsBetweenUpdates;
+            updateLastTime = currentTime;
+
+            currentTime = System.nanoTime();
+            frameDelta = frameDelta + (currentTime-frameLastTime)/nanoSecsBetweenFrames;
+            frameLastTime = currentTime;
+
+            if (updateDelta >= 1) {
+                update();
+                updateDelta = 0;
+                updatesPerSec++;
+            }
+
+
+            if (frameDelta >= 1) {
+                if (gameRenderer.isFrameRendered() == true) {
+                    render();
+                    fps++;
+                    frameDelta = 0;
+                }
+
+            }
+
+
+
+            //Done each Second
+            if ((System.nanoTime()/1000000) - (secondTimer/1000000)>1000) {
+                totalSecondsRunning++;
+                secondTimer = System.nanoTime();
+                System.out.println("UPS: "+updatesPerSec+", FPS: "+fps);
+
+                updatesPerSec = 0;
+                fps = 0;
+            }
+
+        }
+
     }
     
     public void update(){
-        
+        //updates
     }
     
     public void render(){
-        
+        //NEED TO SET ENTITIES TO RENDER!!!!
+        gameRenderer.setWindowWidth(this.getWidth());
+        gameRenderer.setWindowHeight(this.getHeight());
+        gameRenderer.repaint();
     }
     
     public SpaceGame(String title) {
@@ -58,10 +138,10 @@ public class SpaceGame extends JFrame implements Runnable {
         
         System.setProperty("java.awt.headless", "false");
         
-        //gameRenderer = new Graphics.Renderer(WIDTH, HEIGHT);
+        gameRenderer = new Graphics.Renderer(WIDTH, HEIGHT);
         
         mainPanel = new JPanel();
-        //mainPanel.add(gameRenderer);
+        mainPanel.add(gameRenderer);
         mainPanel.setBackground(Color.BLACK);
         mainPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         mainPanel.setFocusable(true);
@@ -69,8 +149,8 @@ public class SpaceGame extends JFrame implements Runnable {
         mainPanel.setLayout(new GridLayout());
 
     
-        //gameRenderer.setVisible(true);
-       // mainPanel.add(gameRenderer);
+        gameRenderer.setVisible(true);
+        mainPanel.add(gameRenderer);
 
         this.add(mainPanel);
     }
