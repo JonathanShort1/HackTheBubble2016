@@ -1,22 +1,24 @@
 /**
- * 
+ *
  */
 
-public class Ship {
+public class Ship extends Entity{
+
+    private final int init = 0;
+
     private int ammo;
-    private double velocity;
-    private double angle;
+
     private Bullet[] bullets;
 
+    public Ship() {
+        this.ammo = init;
+        this.angle = init;
+        this.velocity = init;
+        this.bullets = new Bullet[3];
+    }
+
+
     public int getAmmo() {
-        return 0;
-    }
-
-    public double getVelocity() {
-        return 0;
-    }
-
-    public double getAngle() {
         return 0;
     }
 
