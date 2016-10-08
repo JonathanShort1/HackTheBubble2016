@@ -61,6 +61,7 @@ public class SpaceGame extends JFrame implements Runnable {
         gameRenderer.setVisible(true);
         mainPanel.add(gameRenderer);
         mainPanel.addKeyListener(new spaceGameKeyListener());
+        mainPanel.addMouseMotionListener(new mouseMotionListner());
 
         this.add(mainPanel);
     }
