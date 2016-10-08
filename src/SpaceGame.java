@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -121,7 +123,14 @@ public class SpaceGame extends JFrame implements Runnable {
     }
     
     public void update(){
-        //updates
+        for (int i = 0; i < keysPressed.size(); i++) {
+            if (keysPressed.get(i) == KeyEvent.VK_D){
+                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_A){
+                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()-5);
+            }
+        }
     }
     
     public void render(){
@@ -162,8 +171,28 @@ public class SpaceGame extends JFrame implements Runnable {
     
         gameRenderer.setVisible(true);
         mainPanel.add(gameRenderer);
+        mainPanel.addKeyListener(new spaceGameKeyListener());
 
         this.add(mainPanel);
+    }
+
+    public class spaceGameKeyListener implements KeyListener{
+        @Override
+        public void keyTyped(KeyEvent keyEvent) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent keyEvent) {
+            if (!keysPressed.contains(keyEvent.getKeyCode())) {
+                keysPressed.add(keyEvent.getKeyCode());
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent keyEvent) {
+            keysPressed.remove(new Integer(keyEvent.getKeyCode()));
+        }
     }
 
 }

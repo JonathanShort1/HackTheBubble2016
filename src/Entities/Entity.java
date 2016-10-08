@@ -8,6 +8,7 @@ public class Entity {
     private double yPos;
     private double velocity;
     private double angle;
+    private double maxVelocity;
 
     public double getxPos() {
         return xPos;
@@ -30,6 +31,10 @@ public class Entity {
     }
 
     public void setAngle(double angle) {
+        if(angle > 360){
+            angle = angle % 360;
+        }
+
         this.angle = angle;
     }
 
@@ -42,4 +47,13 @@ public class Entity {
         return angle;
     }
 
+    public void update(){}
+
+    public double getMaxVelocity() {
+        return maxVelocity;
+    }
+
+    public void setMaxVelocity(double maxVelocity) {
+        this.maxVelocity = maxVelocity;
+    }
 }
