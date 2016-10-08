@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f8bb0c-8b10-4912-8b23-50e84d87c646" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HackTheBubble2016/Entities/Bullet.class" afterPath="$PROJECT_DIR$/out/production/HackTheBubble2016/Entities/Bullet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HackTheBubble2016/Entities/Ship.class" afterPath="$PROJECT_DIR$/out/production/HackTheBubble2016/Entities/Ship.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HackTheBubble2016/Graphics/Renderer.class" afterPath="$PROJECT_DIR$/out/production/HackTheBubble2016/Graphics/Renderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HackTheBubble2016/SpaceGame.class" afterPath="$PROJECT_DIR$/out/production/HackTheBubble2016/SpaceGame.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entities/Entity.java" afterPath="$PROJECT_DIR$/src/Entities/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entities/Ship.java" afterPath="$PROJECT_DIR$/src/Entities/Ship.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpaceGame.java" afterPath="$PROJECT_DIR$/src/SpaceGame.java" />
     </list>
     <ignored path="HackTheBubble2016.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,12 +27,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SpaceGame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SpaceGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SpaceGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-455">
-              <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="1453">
+              <caret line="130" column="74" selection-start-line="130" selection-start-column="74" selection-end-line="130" selection-end-column="74" />
+              <folding>
+                <element signature="e#768#776#0" expanded="true" />
+                <element signature="e#843#851#0" expanded="true" />
+                <element signature="e#913#922#0" expanded="true" />
+                <element signature="e#5564#5565#0" expanded="true" />
+                <element signature="e#5642#5643#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,7 +46,7 @@
       <file leaf-file-name="Renderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Graphics/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1237">
+            <state relative-caret-position="1453">
               <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
               <folding>
                 <element signature="e#2953#2954#0" expanded="true" />
@@ -63,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ship.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Ship.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entities/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
@@ -103,9 +106,9 @@
         <option value="$PROJECT_DIR$/src/Renderer.java" />
         <option value="$PROJECT_DIR$/src/Entities/Bullet.java" />
         <option value="$PROJECT_DIR$/src/Graphics/Renderer.java" />
-        <option value="$PROJECT_DIR$/src/SpaceGame.java" />
         <option value="$PROJECT_DIR$/src/Entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/Entities/Ship.java" />
+        <option value="$PROJECT_DIR$/src/SpaceGame.java" />
       </list>
     </option>
   </component>
@@ -706,7 +709,7 @@
       <workItem from="1475922359435" duration="203000" />
       <workItem from="1475924588078" duration="2642000" />
       <workItem from="1475927313765" duration="2533000" />
-      <workItem from="1475930374676" duration="621000" />
+      <workItem from="1475930374676" duration="1403000" />
     </task>
     <task id="LOCAL-00001" summary="Added src">
       <created>1475922487859</created>
@@ -750,11 +753,25 @@
       <option name="project" value="LOCAL" />
       <updated>1475929623835</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added update method to entities and started writing a simple&#10;slowDown method to ship.&#10;">
+      <created>1475931031084</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1475931031084</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Made the keylistener a seperate class&#10;">
+      <created>1475931372683</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1475931372683</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5999000" />
+    <option name="totallyTimeSpent" value="6781000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1020" extended-state="6" />
@@ -765,10 +782,10 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27383593" sideWeight="0.49583334" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12195122" sideWeight="0.50625" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12195122" sideWeight="0.5083333" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12195122" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13414635" sideWeight="0.49583334" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12195122" sideWeight="0.49166667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13414635" sideWeight="0.49375" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -806,7 +823,9 @@
     <MESSAGE value="Added main class of the game and the renderer.&#10;Also moved stuff into packages." />
     <MESSAGE value="Main game loop done with 60fps and 60ups. &#10;Also implemented renderer&#10;" />
     <MESSAGE value="Renderer now draws entities!&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renderer now draws entities!&#10;" />
+    <MESSAGE value="Added update method to entities and started writing a simple&#10;slowDown method to ship.&#10;" />
+    <MESSAGE value="Made the keylistener a seperate class&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the keylistener a seperate class&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -859,25 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpaceGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-455">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics/Renderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1237">
-          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
-          <folding>
-            <element signature="e#2953#2954#0" expanded="true" />
-            <element signature="e#3009#3010#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entities/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="571">
@@ -893,6 +893,39 @@
           <folding>
             <element signature="e#784#785#0" expanded="true" />
             <element signature="e#815#816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0/jre/lib/rt.jar!/java/util/ArrayList.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Graphics/Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1453">
+          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+          <folding>
+            <element signature="e#2953#2954#0" expanded="true" />
+            <element signature="e#3009#3010#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpaceGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1453">
+          <caret line="130" column="74" selection-start-line="130" selection-start-column="74" selection-end-line="130" selection-end-column="74" />
+          <folding>
+            <element signature="e#768#776#0" expanded="true" />
+            <element signature="e#843#851#0" expanded="true" />
+            <element signature="e#913#922#0" expanded="true" />
+            <element signature="e#5564#5565#0" expanded="true" />
+            <element signature="e#5642#5643#0" expanded="true" />
           </folding>
         </state>
       </provider>

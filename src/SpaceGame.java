@@ -124,7 +124,12 @@ public class SpaceGame extends JFrame implements Runnable {
     
     public void update(){
         for (int i = 0; i < keysPressed.size(); i++) {
-            System.out.println(keysPressed.get(i));
+            if (keysPressed.get(i) == KeyEvent.VK_D){
+                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_A){
+                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()-5);
+            }
         }
     }
     
@@ -186,9 +191,7 @@ public class SpaceGame extends JFrame implements Runnable {
 
         @Override
         public void keyReleased(KeyEvent keyEvent) {
-            if (keysPressed.contains(keyEvent.getKeyCode())) {
-                keysPressed.remove(keyEvent.getKeyCode());
-            }
+            keysPressed.remove(new Integer(keyEvent.getKeyCode()));
         }
     }
 
