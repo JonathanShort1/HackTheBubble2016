@@ -5,6 +5,12 @@ public class Bullet extends Entity {
     private boolean inFlight;
     private Ship inShip;
 
+    public int getSafetyTime() {
+        return safetyTime;
+    }
+
+    private int safetyTime = 90;
+
     public Bullet(double xPos, double yPos, double angle,int width, int height, Ship inShip) {
         super.setCurrentTexture("bullet-inflight.png");
         super.setxPos(xPos);
@@ -24,6 +30,15 @@ public class Bullet extends Entity {
         this.setyPos(inShip.getyPos());
         this.setAngle(inShip.getAngle());
         this.setVelocity(inShip.getVelocity() + 3);
+    }
+
+    @Override
+    public void move(){
+        super.move();
+
+        if (safetyTime > 0){
+            safetyTime--;
+        }
     }
 
     public boolean isInFlight() {

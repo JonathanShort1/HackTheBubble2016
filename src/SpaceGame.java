@@ -77,7 +77,7 @@ public class SpaceGame extends JFrame implements Runnable {
         Ship ship1 = new Ship(200, 200, 0, 80, 80, "Ship1.png");
         gameEntities.add(ship1);
 
-        Ship ship2 = new Ship(400, 200, 180, 80, 80, "Ship2.png");
+        Ship ship2 = new Ship(800, 500, 180, 80, 80, "Ship2.png");
         gameEntities.add(ship2);
 
         mainThread = new Thread(this, "main");
@@ -217,11 +217,33 @@ public class SpaceGame extends JFrame implements Runnable {
             }
         }
 
-        if(checkCollision(gameEntities.get(0),gameEntities.get(1))){
-            if (gameEntities.get(0) instanceof Ship && gameEntities.get(1) instanceof Ship){
+        if (gameEntities.get(0) instanceof  Ship && gameEntities.get(1) instanceof Ship){
+            if (checkCollision(gameEntities.get(0), gameEntities.get(1))){
                 ((Ship) gameEntities.get(0)).isKill("Ship1-ded.png");
                 ((Ship) gameEntities.get(1)).isKill("Ship2-ded.png");
             }
+            else if(checkCollision(gameEntities.get(0),((Ship) gameEntities.get(0)).getBullet())){
+                if (((Ship) gameEntities.get(0)).getBullet().getSafetyTime() == 0) {
+                    ((Ship) gameEntities.get(0)).isKill("Ship1-ded.png");
+                }
+            }
+            else if (checkCollision(gameEntities.get(0), ((Ship) gameEntities.get(1)).getBullet())){
+                if (((Ship) gameEntities.get(1)).getBullet().getSafetyTime() == 0) {
+                    ((Ship) gameEntities.get(0)).isKill("Ship1-ded.png");
+                }
+            }
+
+            else if(checkCollision(gameEntities.get(1),((Ship) gameEntities.get(0)).getBullet())){
+                if (((Ship) gameEntities.get(0)).getBullet().getSafetyTime() == 0) {
+                    ((Ship) gameEntities.get(1)).isKill("Ship2-ded.png");
+                }
+            }
+            else if (checkCollision(gameEntities.get(1), ((Ship) gameEntities.get(1)).getBullet())){
+                if (((Ship) gameEntities.get(1)).getBullet().getSafetyTime() == 0) {
+                    ((Ship) gameEntities.get(1)).isKill("Ship2-ded.png");
+                }
+            }
+
         }
 
         //Edge of board
