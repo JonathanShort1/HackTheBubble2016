@@ -1,6 +1,7 @@
 package Graphics;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,8 @@ public class SpriteLoader {
 
 
     public SpriteLoader(String dirPath){
-        this.dirPath = dirPath;
+        String current = System.getProperty("user.dir");
+        this.dirPath = current + "/" + dirPath;
     }
 
     //returns a buffered Image
@@ -27,14 +29,18 @@ public class SpriteLoader {
 
     //loads sprite as buffered image
     private BufferedImage loadSprite(String path){
+        System.out.println(dirPath+"/"+path);
         File img = new File(dirPath + "/" + path);
+
+
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File(path));
+            image = ImageIO.read(img);
         } catch (IOException e){
             System.err.println("Sprite at: " + path + " could not be loaded, \n Check that it exists");
             e.printStackTrace();
         }
+
         return image;
     }
 }

@@ -55,19 +55,12 @@ public class Renderer extends JComponent {
 
 
         //create simple background.
-        g2d.setColor(new Color(0,70,90));
+        g2d.setColor(new Color(0,10,10));
         g2d.fillRect(0, 0, 1280, 720);
 
 
         for (int i = 0; i < entitiesToRender.size(); i++) {
-            if (i == 0){
-                g2d.setColor(Color.green);
-            }
-            else {
-                g2d.setColor(Color.red);
-            }
-
-            g2d.fillRect((int)entitiesToRender.get(i).getxPos(),(int)entitiesToRender.get(i).getyPos(),100,100);
+            g2d.drawImage(entitiesToRender.get(i).getCurrentTexture(),(int)entitiesToRender.get(i).getxPos(), (int)entitiesToRender.get(i).getyPos(),null);
         }
 
 

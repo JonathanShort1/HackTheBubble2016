@@ -77,8 +77,8 @@ public class SpaceGame extends JFrame implements Runnable {
     private void startNewGame() {
         gameIsRunning = true;
 
-        gameEntities.add(new Ship(200,200,0));
-        gameEntities.add(new Ship(400,200,0));
+        gameEntities.add(new Ship(200,200,0,"Ship1.png"));
+        gameEntities.add(new Ship(400,200,0,"Ship2.png"));
         mainThread = new Thread(this,"main");
         mainThread.start();
     }
