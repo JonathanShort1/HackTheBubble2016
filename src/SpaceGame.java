@@ -206,6 +206,13 @@ public class SpaceGame extends JFrame implements Runnable {
                     ((Ship) gameEntities.get(1)).shoot();
                 }
             }
+            else if (keysPressed.get(i) == KeyEvent.VK_R){
+                this.dispose();
+                keysPressed.remove(i);
+                main(new String[1]);
+
+
+            }
 
         }
 

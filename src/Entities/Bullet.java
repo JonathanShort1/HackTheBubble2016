@@ -39,7 +39,7 @@ public class Bullet extends Entity {
         if (safetyTime > 0){
             safetyTime--;
         }
-        System.out.println(safetyTime);
+
     }
 
     public boolean isInFlight() {
