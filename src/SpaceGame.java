@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -122,6 +124,26 @@ public class SpaceGame extends JFrame implements Runnable {
     
     public void update(){
         //updates
+        KeyListener spacegame = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent keyEvent) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                if (!keysPressed.contains(keyEvent.getKeyCode())) {
+                    keysPressed.add(keyEvent.getKeyCode());
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent keyEvent) {
+                if (keysPressed.contains(keyEvent.getKeyCode())) {
+                    keysPressed.remove(keyEvent.getKeyCode());
+                }
+            }
+        };
     }
     
     public void render(){
