@@ -232,7 +232,28 @@ public class SpaceGame extends JFrame implements Runnable {
                 gameEntities.get(i).setyPos(0 - gameEntities.get(i).getHeight());
             }
             //BULLETS
-            //if (((Ship)gameEntities.get(i)).getBullet().getxPos())
+            if (((Ship)gameEntities.get(i)).getBullet().getxPos() < 0) {
+                if (((Ship) gameEntities.get(i)).getBullet().getAngle() > 0) {
+                    ((Ship) gameEntities.get(i)).getBullet().setAngle(180 - ((Ship)gameEntities.get(i)).getBullet().getAngle());
+                } else {
+                    ((Ship) gameEntities.get(i)).getBullet().setAngle(-1*(180 + ((Ship)gameEntities.get(i)).getBullet().getAngle()));
+                }
+            }
+            if (((Ship)gameEntities.get(i)).getBullet().getxPos() + ((Ship)gameEntities.get(i)).getBullet().getWidth() > mainPanel.getWidth()) {
+                if (((Ship) gameEntities.get(i)).getBullet().getAngle() > 0) {
+                    ((Ship) gameEntities.get(i)).getBullet().setAngle(-1*(180 - ((Ship)gameEntities.get(i)).getBullet().getAngle()));
+                } else {
+                    ((Ship) gameEntities.get(i)).getBullet().setAngle(-1*(180 + ((Ship)gameEntities.get(i)).getBullet().getAngle()));
+                }
+            }
+            if (((Ship)gameEntities.get(i)).getBullet().getyPos() < 0) {
+                ((Ship)gameEntities.get(i)).getBullet().setAngle(-1*((Ship)gameEntities.get(i)).getBullet().getAngle());
+            }
+            if (((Ship)gameEntities.get(i)).getBullet().getyPos() + ((Ship)gameEntities.get(i)).getBullet().getHeight() > mainPanel.getHeight()) {
+                ((Ship)gameEntities.get(i)).getBullet().setAngle(-1*((Ship)gameEntities.get(i)).getBullet().getAngle());
+            }
+
+
         }
 
 
