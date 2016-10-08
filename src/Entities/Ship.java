@@ -15,12 +15,14 @@ public class Ship extends Entity{
 
     private Bullet[] bullets;
 
-    public Ship(double xPos, double yPos, double angle, String texturePath) {
+    public Ship(double xPos, double yPos, double angle, double width, double height, String texturePath) {
         this.ammo = init;
         super.setCurrentTexture(texturePath);
         super.setAngle(angle);
         super.setxPos(xPos);
         super.setyPos(yPos);
+        super.setHeight(height);
+        super.setWidth(width);
         super.setVelocity(init);
         super.setMaxVelocity(maxVelocity);
         this.bullets = new Bullet[3];

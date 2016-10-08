@@ -77,8 +77,8 @@ public class SpaceGame extends JFrame implements Runnable {
     private void startNewGame() {
         gameIsRunning = true;
 
-        gameEntities.add(new Ship(200,200,0,"Ship1.png"));
-        gameEntities.add(new Ship(400,200,180,"Ship2.png"));
+        gameEntities.add(new Ship(200,200,0, 80, 80,"Ship1.png"));
+        gameEntities.add(new Ship(400,200,180, 80, 80,"Ship2.png"));
         mainThread = new Thread(this,"main");
         mainThread.start();
     }
@@ -199,7 +199,12 @@ public class SpaceGame extends JFrame implements Runnable {
             gameEntities.get(i).update();
         }
 
-
+        //Edge of board
+        for (int i = 0; i < gameEntities.size(); i++) {
+            if (gameEntities.get(i).getxPos() + gameEntities.get(i).getWidth() < 0) {
+                gameEntities.get(i).setxPos(mainPanel.getWidth());
+            }
+        }
     }
 
     public class spaceGameKeyListener implements KeyListener{
