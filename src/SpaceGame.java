@@ -217,6 +217,13 @@ public class SpaceGame extends JFrame implements Runnable {
             }
         }
 
+        if(checkCollision(gameEntities.get(0),gameEntities.get(1))){
+            if (gameEntities.get(0) instanceof Ship && gameEntities.get(1) instanceof Ship){
+                ((Ship) gameEntities.get(0)).isKill("Ship1-ded.png");
+                ((Ship) gameEntities.get(1)).isKill("Ship2-ded.png");
+            }
+        }
+
         //Edge of board
         for (int i = 0; i < gameEntities.size(); i++) {
             if (gameEntities.get(i).getxPos() + gameEntities.get(i).getWidth() < 0) {
@@ -257,6 +264,27 @@ public class SpaceGame extends JFrame implements Runnable {
         }
 
 
+    }
+
+    public boolean checkCollision (Entity entity1, Entity entity2){
+        boolean collisionDetected = false;
+
+        int entity1Y = (int)entity1.getyPos();
+        int entity1X = (int)entity1.getxPos();
+        int entity1Height = entity1.getHeight();
+        int entity1Width = entity1.getWidth();
+
+        int entity2Y = (int)entity2.getyPos();
+        int entity2X = (int)entity2.getxPos();
+        int entity2Height = entity2.getHeight();
+        int entity2Width = entity2.getWidth();
+
+        if (entity2X+entity2Width >= entity1X && entity2X <= entity1X+entity1Width && entity2Y+entity2Height >= entity1Y && entity2Y <= entity1Y+entity1Height) {
+            collisionDetected = true;
+        }
+
+
+        return collisionDetected;
     }
 
     public class spaceGameKeyListener implements KeyListener {

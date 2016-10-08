@@ -72,8 +72,8 @@ public class Renderer extends JComponent {
             int y = (int)entitiesToRender.get(i).getyPos();
 
             double rotationRequired = Math.toRadians (entitiesToRender.get(i).getAngle());
-            double locationX = 80 / 2;
-            double locationY = 80 / 2;
+            double locationX = entitiesToRender.get(i).getWidth() / 2;
+            double locationY = entitiesToRender.get(i).getHeight() / 2;
             AffineTransform rotation = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
             AffineTransformOp rotationOp = new AffineTransformOp(rotation, AffineTransformOp.TYPE_BILINEAR);
 
