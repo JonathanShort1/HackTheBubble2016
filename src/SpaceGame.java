@@ -178,10 +178,10 @@ public class SpaceGame extends JFrame implements Runnable {
             else if(keysPressed.get(i) == KeyEvent.VK_A){
                 gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()-5);
             }
-            else if(keysPressed.get(i) == KeyEvent.VK_W){
+            else if(keysPressed.get(i) == KeyEvent.VK_S){
                 gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()+5);
             }
-            else if(keysPressed.get(i) == KeyEvent.VK_S){
+            else if(keysPressed.get(i) == KeyEvent.VK_W){
                 gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()-5);
             }
         }
