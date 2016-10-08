@@ -1,14 +1,32 @@
 package Entities;
 
+import Graphics.SpriteLoader;
+
+import java.awt.image.BufferedImage;
+
 /**
  * Created by Peter on 08/10/16.
  */
 public class Entity {
+
+    private final String imgDir = "sprites";
+
     private double xPos;
     private double yPos;
     private double velocity;
     private double angle;
     private double maxVelocity;
+
+    public BufferedImage getCurrentTexture() {
+        return currentTexture;
+    }
+
+    public void setCurrentTexture(String texturePath) {
+        SpriteLoader spriteLoader =  new SpriteLoader(imgDir);
+        this.currentTexture = spriteLoader.getSprite(texturePath);
+    }
+
+    private BufferedImage currentTexture;
 
     public double getxPos() {
         return xPos;
