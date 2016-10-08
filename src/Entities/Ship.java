@@ -58,4 +58,10 @@ public class Ship extends Entity{
             this.setVelocity(this.getVelocity() + changeSpeed);
         }
     }
+
+    private void shoot() {
+        if (bullets.length > 0) {
+
+        }
+    }
 }
