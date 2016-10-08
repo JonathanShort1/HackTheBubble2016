@@ -7,6 +7,7 @@ package Entities;
 public class Ship extends Entity{
 
     private final int init = 0;
+    private int slowDownAmount = 10;
 
     private int ammo;
 
@@ -38,6 +39,14 @@ public class Ship extends Entity{
         return bullets;
     }
 
+    @Override
+    public void update() {
+        this.slowDown();
+    }
 
-
+    private void slowDown() {
+        if (this.getVelocity() > 0){
+            this.setVelocity(this.getVelocity() - slowDownAmount);
+        }
+    }
 }

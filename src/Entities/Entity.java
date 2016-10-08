@@ -30,6 +30,10 @@ public class Entity {
     }
 
     public void setAngle(double angle) {
+        if(angle > 360){
+            angle = angle % 360;
+        }
+
         this.angle = angle;
     }
 
@@ -41,5 +45,7 @@ public class Entity {
     public double getAngle() {
         return angle;
     }
+
+    public void update(){}
 
 }
