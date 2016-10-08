@@ -1,6 +1,7 @@
 package Graphics;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class Renderer extends JComponent {
     private int currentFPS;
     private int currentUPS;
     private boolean frameRendered = true;
+
+    private BufferedImage stars = null;
 
 
     public Renderer(int width, int height){
@@ -52,12 +55,15 @@ public class Renderer extends JComponent {
 
         g2d = renderedGame.createGraphics();
 
+        if (stars == null){
+            stars = new SpriteLoader("sprites").getSprite("background1.png");
+        }
 
 
         //create simple background.
         g2d.setColor(new Color(21, 22, 24));
         g2d.fillRect(0, 0, 1280, 720);
-        g2d.drawImage(new SpriteLoader("sprites").getSprite("background1.png"),100,0,null);
+        g2d.drawImage(stars,100,0,null);
 
         for (int i = 0; i < entitiesToRender.size(); i++) {
             g2d.drawImage(entitiesToRender.get(i).getCurrentTexture(),(int)entitiesToRender.get(i).getxPos(), (int)entitiesToRender.get(i).getyPos(),null);
