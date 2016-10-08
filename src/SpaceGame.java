@@ -74,13 +74,13 @@ public class SpaceGame extends JFrame implements Runnable {
 
     private void startNewGame() {
         gameIsRunning = true;
-        Ship ship1 = new Ship(200,200,0, 80, 80,"Ship1.png");
+        Ship ship1 = new Ship(200, 200, 0, 80, 80, "Ship1.png");
         gameEntities.add(ship1);
 
-        Ship ship2 = new Ship(400,200,180, 80, 80,"Ship2.png");
+        Ship ship2 = new Ship(400, 200, 180, 80, 80, "Ship2.png");
         gameEntities.add(ship2);
 
-        mainThread = new Thread(this,"main");
+        mainThread = new Thread(this, "main");
         mainThread.start();
     }
 
@@ -93,7 +93,7 @@ public class SpaceGame extends JFrame implements Runnable {
         long secondTimer = System.nanoTime();
 
 		/*
-		 * Keeps track of the last time the program updated the thread
+         * Keeps track of the last time the program updated the thread
 		 * or displayed a new frame.
 		 */
         long updateLastTime = System.nanoTime();
@@ -103,8 +103,8 @@ public class SpaceGame extends JFrame implements Runnable {
 		 * The number of nano seconds the program needs to wait before updating/
 		 * displaying a frame.
 		 */
-        final double nanoSecsBetweenUpdates = 1000000000.0/MAX_UPS;
-        final double nanoSecsBetweenFrames = 1000000000.0/maxFPS;
+        final double nanoSecsBetweenUpdates = 1000000000.0 / MAX_UPS;
+        final double nanoSecsBetweenFrames = 1000000000.0 / maxFPS;
 
 		/*
 		 * When these deltas = 1, the number of nanoseconds above
@@ -120,11 +120,11 @@ public class SpaceGame extends JFrame implements Runnable {
 
         while (gameIsRunning) {
             long currentTime = System.nanoTime();
-            updateDelta = updateDelta + (currentTime-updateLastTime)/nanoSecsBetweenUpdates;
+            updateDelta = updateDelta + (currentTime - updateLastTime) / nanoSecsBetweenUpdates;
             updateLastTime = currentTime;
 
             currentTime = System.nanoTime();
-            frameDelta = frameDelta + (currentTime-frameLastTime)/nanoSecsBetweenFrames;
+            frameDelta = frameDelta + (currentTime - frameLastTime) / nanoSecsBetweenFrames;
             frameLastTime = currentTime;
 
             if (updateDelta >= 1) {
@@ -143,10 +143,10 @@ public class SpaceGame extends JFrame implements Runnable {
             }
 
             //Done each Second
-            if ((System.nanoTime()/1000000) - (secondTimer/1000000)>1000) {
+            if ((System.nanoTime() / 1000000) - (secondTimer / 1000000) > 1000) {
                 totalSecondsRunning++;
                 secondTimer = System.nanoTime();
-                System.out.println("UPS: "+updatesPerSec+", FPS: "+fps);
+                System.out.println("UPS: " + updatesPerSec + ", FPS: " + fps);
 
                 updatesPerSec = 0;
                 fps = 0;
@@ -161,16 +161,15 @@ public class SpaceGame extends JFrame implements Runnable {
         for (int i = 0; i < gameEntities.size(); i++) {
             entitiesToRender.add(gameEntities.get(i));
 
-            if (gameEntities.get(i) instanceof  Ship){
+            if (gameEntities.get(i) instanceof Ship) {
                 Bullet bullet = ((Ship) gameEntities.get(i)).getBullet();
 
-                if (bullet.isInFlight()){
+                if (bullet.isInFlight()) {
                     entitiesToRender.add(bullet);
                 }
 
             }
         }
-
 
 
         gameRenderer.setEntitiesToRender(entitiesToRender);
@@ -182,37 +181,28 @@ public class SpaceGame extends JFrame implements Runnable {
 
     private void update() {
         for (int i = 0; i < keysPressed.size(); i++) {
-            if(keysPressed.get(i) == KeyEvent.VK_D){
-                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()+3);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_A){
-                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle()-3);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_S){
+            if (keysPressed.get(i) == KeyEvent.VK_D) {
+                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle() + 3);
+            } else if (keysPressed.get(i) == KeyEvent.VK_A) {
+                gameEntities.get(0).setAngle(gameEntities.get(0).getAngle() - 3);
+            } else if (keysPressed.get(i) == KeyEvent.VK_S) {
                 gameEntities.get(0).reverseAcceleration();
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_W){
-               gameEntities.get(0).accelerate();
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_UP){
+            } else if (keysPressed.get(i) == KeyEvent.VK_W) {
+                gameEntities.get(0).accelerate();
+            } else if (keysPressed.get(i) == KeyEvent.VK_UP) {
                 gameEntities.get(1).accelerate();
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_DOWN){
+            } else if (keysPressed.get(i) == KeyEvent.VK_DOWN) {
                 gameEntities.get(1).reverseAcceleration();
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_LEFT){
-                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()-3);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_RIGHT){
-                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle()+3);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_SPACE){
-                if (gameEntities.get(0) instanceof Ship){
+            } else if (keysPressed.get(i) == KeyEvent.VK_LEFT) {
+                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle() - 3);
+            } else if (keysPressed.get(i) == KeyEvent.VK_RIGHT) {
+                gameEntities.get(1).setAngle(gameEntities.get(1).getAngle() + 3);
+            } else if (keysPressed.get(i) == KeyEvent.VK_SPACE) {
+                if (gameEntities.get(0) instanceof Ship) {
                     ((Ship) gameEntities.get(0)).shoot();
                 }
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_NUMPAD0){
-                if (gameEntities.get(1) instanceof Ship){
+            } else if (keysPressed.get(i) == KeyEvent.VK_NUMPAD0) {
+                if (gameEntities.get(1) instanceof Ship) {
                     ((Ship) gameEntities.get(1)).shoot();
                 }
             }
@@ -222,7 +212,7 @@ public class SpaceGame extends JFrame implements Runnable {
         for (int i = 0; i < gameEntities.size(); i++) {
             gameEntities.get(i).update();
 
-            if (gameEntities.get(i) instanceof Ship){
+            if (gameEntities.get(i) instanceof Ship) {
                 ((Ship) gameEntities.get(i)).getBullet().move();
             }
         }
@@ -241,10 +231,14 @@ public class SpaceGame extends JFrame implements Runnable {
             if (gameEntities.get(i).getyPos() > mainPanel.getHeight()) {
                 gameEntities.get(i).setyPos(0 - gameEntities.get(i).getHeight());
             }
+            //BULLETS
+            //if (((Ship)gameEntities.get(i)).getBullet().getxPos())
         }
+
+
     }
 
-    public class spaceGameKeyListener implements KeyListener{
+    public class spaceGameKeyListener implements KeyListener {
 
         @Override
         public void keyPressed(KeyEvent arg0) {
@@ -252,7 +246,6 @@ public class SpaceGame extends JFrame implements Runnable {
             if (!keysPressed.contains(arg0.getKeyCode())) {
                 keysPressed.add(new Integer(arg0.getKeyCode()));
             }
-
         }
 
         @Override
@@ -287,5 +280,4 @@ public class SpaceGame extends JFrame implements Runnable {
     public void setGameEntities(ArrayList<Entity> gameEntities) {
         this.gameEntities = gameEntities;
     }
-
 }

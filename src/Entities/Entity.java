@@ -11,8 +11,8 @@ public class Entity {
     private double xPos;
     private double yPos;
     private double increase = 0.2;
-    private double width;
-    private double height;
+    private int width;
+    private int height;
     private double velocity;
     private double angle;
     private double maxVelocity = 10;
@@ -132,19 +132,19 @@ public class Entity {
         return angle;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 }

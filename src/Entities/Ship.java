@@ -25,7 +25,7 @@ public class Ship extends Entity{
         super.setWidth(width);
         super.setVelocity(init);
         super.setMaxVelocity(maxVelocity);
-        this.bullet = new Bullet(0,0,0,this);
+        this.bullet = new Bullet(0,0,0,74,19,this);
     }
 
     @Override

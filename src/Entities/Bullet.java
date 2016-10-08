@@ -5,10 +5,12 @@ public class Bullet extends Entity {
     private boolean inFlight;
     private Ship inShip;
 
-    public Bullet(double xPos, double yPos, double angle, Ship inShip) {
+    public Bullet(double xPos, double yPos, double angle,int width, int height, Ship inShip) {
         super.setCurrentTexture("bullet-inflight.png");
         super.setxPos(xPos);
         super.setyPos(yPos);
+        super.setWidth(width);
+        super.setHeight(height);
         super.setVelocity(0);
         super.setAngle(angle);
         this.inFlight = false;
