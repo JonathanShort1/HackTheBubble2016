@@ -9,7 +9,7 @@ public class Bullet extends Entity {
         return safetyTime;
     }
 
-    private int safetyTime = 90;
+    private int safetyTime = 60;
 
     public Bullet(double xPos, double yPos, double angle,int width, int height, Ship inShip) {
         super.setCurrentTexture("bullet-inflight.png");
@@ -39,6 +39,7 @@ public class Bullet extends Entity {
         if (safetyTime > 0){
             safetyTime--;
         }
+        System.out.println(safetyTime);
     }
 
     public boolean isInFlight() {

@@ -213,7 +213,10 @@ public class SpaceGame extends JFrame implements Runnable {
             gameEntities.get(i).update();
 
             if (gameEntities.get(i) instanceof Ship) {
-                ((Ship) gameEntities.get(i)).getBullet().move();
+                if ( ((Ship) gameEntities.get(i)).getBullet().isInFlight()){
+                    ((Ship) gameEntities.get(i)).getBullet().move();
+                }
+
             }
         }
 
