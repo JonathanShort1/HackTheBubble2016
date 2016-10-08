@@ -171,7 +171,21 @@ public class SpaceGame extends JFrame implements Runnable {
     }
 
     private void update() {
-        gameEntities.get(0).setxPos(gameEntities.get(0).getxPos() + 1);
+        for (int i = 0; i < keysPressed.size(); i++) {
+            if(keysPressed.get(i) == KeyEvent.VK_D){
+                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_A){
+                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()-5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_W){
+                gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()+5);
+            }
+            else if(keysPressed.get(i) == KeyEvent.VK_S){
+                gameEntities.get(0).setyPos(gameEntities.get(0).getyPos()-5);
+            }
+        }
+
     }
 
     public class spaceGameKeyListener implements KeyListener{
