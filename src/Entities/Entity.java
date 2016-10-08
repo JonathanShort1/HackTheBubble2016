@@ -8,6 +8,7 @@ public class Entity {
     private double yPos;
     private double velocity;
     private double angle;
+    private double maxVelocity;
 
     public double getxPos() {
         return xPos;
@@ -48,4 +49,11 @@ public class Entity {
 
     public void update(){}
 
+    public double getMaxVelocity() {
+        return maxVelocity;
+    }
+
+    public void setMaxVelocity(double maxVelocity) {
+        this.maxVelocity = maxVelocity;
+    }
 }
