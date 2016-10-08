@@ -204,6 +204,15 @@ public class SpaceGame extends JFrame implements Runnable {
             if (gameEntities.get(i).getxPos() + gameEntities.get(i).getWidth() < 0) {
                 gameEntities.get(i).setxPos(mainPanel.getWidth());
             }
+            if (gameEntities.get(i).getxPos() > mainPanel.getWidth()) {
+                gameEntities.get(i).setxPos(0);
+            }
+            if (gameEntities.get(i).getyPos() + gameEntities.get(i).getHeight() < 0) {
+                gameEntities.get(i).setyPos(mainPanel.getHeight());
+            }
+            if (gameEntities.get(i).getyPos() > mainPanel.getHeight()) {
+                gameEntities.get(i).setyPos(0);
+            }
         }
     }
 
