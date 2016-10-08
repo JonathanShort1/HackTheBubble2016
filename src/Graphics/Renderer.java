@@ -55,9 +55,9 @@ public class Renderer extends JComponent {
 
 
         //create simple background.
-        g2d.setColor(new Color(0,10,10));
+        g2d.setColor(new Color(21, 22, 24));
         g2d.fillRect(0, 0, 1280, 720);
-
+        g2d.drawImage(new SpriteLoader("sprites").getSprite("background1.png"),100,0,null);
 
         for (int i = 0; i < entitiesToRender.size(); i++) {
             g2d.drawImage(entitiesToRender.get(i).getCurrentTexture(),(int)entitiesToRender.get(i).getxPos(), (int)entitiesToRender.get(i).getyPos(),null);
