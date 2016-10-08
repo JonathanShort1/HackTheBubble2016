@@ -12,43 +12,73 @@ import Entities.*;
 import Graphics.Renderer;
 
 public class SpaceGame extends JFrame implements Runnable {
-    private static final long serialVersionUID = -3009979543265247698L;
+    private static final long serialVersionUID = 1L;
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
     private static final int MAX_UPS = 60;
-    
+
     private Thread mainThread;
     private int maxFPS = 60;
     private boolean gameIsRunning = false;
+    private ArrayList<Integer> keysPressed = new ArrayList<Integer>();
     private JPanel mainPanel;
     private Renderer gameRenderer;
 
+    private static SpaceGame game;
+
+
     private ArrayList<Entity> gameEntities = new ArrayList<Entity>();
-
     private ArrayList<Entity> entitiesToRender = new ArrayList<Entity>();
-    private ArrayList<Integer> keysPressed = new ArrayList<Integer>();
-    
-    private static SpaceGame spaceGame;
-    
-    
+
+    public SpaceGame(String title) {
+        super(title);
+        this.setResizable(true);
+        this.setSize(WIDTH, HEIGHT);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setFocusableWindowState(true);
+        this.setVisible(true);
+        this.setIgnoreRepaint(false);
+
+        System.setProperty("java.awt.headless", "false");
+
+        gameRenderer = new Renderer(WIDTH, HEIGHT);
+
+        mainPanel = new JPanel();
+        mainPanel.add(gameRenderer);
+        mainPanel.setBackground(Color.BLACK);
+        mainPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        mainPanel.setFocusable(true);
+        mainPanel.setVisible(true);
+        mainPanel.setLayout(new GridLayout());
+
+
+        gameRenderer.setVisible(true);
+        mainPanel.add(gameRenderer);
+        mainPanel.addKeyListener(new spaceGameKeyListener());
+
+        this.add(mainPanel);
+    }
+
     public static void main(String[] args) {
-        spaceGame = new SpaceGame("Hello World");
-        spaceGame.init();
-        spaceGame.toFront();
-
-        spaceGame.run();
-        
-        
+        System.setProperty("sun.java2d.opengl", "True");
+        game = new SpaceGame("Platformer Test");
+        game.startNewGame();
+        game.toFront();
     }
-     
-    public void init(){
+
+
+    private void startNewGame() {
         gameIsRunning = true;
-        Ship testShip = new Ship(200,200,2);
-        gameEntities.add(testShip);
 
+        gameEntities.add(new Ship(200,200,0));
+
+        mainThread = new Thread(this,"main");
+        mainThread.start();
     }
-    
-    public void run(){
+
+    @Override
+    public void run() {
         //Counts the number of seconds the thread has been running for
         long totalSecondsRunning = 0;
 
@@ -120,79 +150,60 @@ public class SpaceGame extends JFrame implements Runnable {
 
         }
 
-    }
-    
-    public void update(){
-        for (int i = 0; i < keysPressed.size(); i++) {
-            if (keysPressed.get(i) == KeyEvent.VK_D){
-                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()+5);
-            }
-            else if(keysPressed.get(i) == KeyEvent.VK_A){
-                gameEntities.get(0).setxPos(gameEntities.get(0).getxPos()-5);
-            }
-        }
-    }
-    
-    public void render(){
 
-        for (int i=0; i < gameEntities.size();i++){
+
+    }
+
+    private void render() {
+        entitiesToRender.clear();
+
+        for (int i = 0; i < gameEntities.size(); i++) {
             entitiesToRender.add(gameEntities.get(i));
         }
+
 
         gameRenderer.setEntitiesToRender(entitiesToRender);
 
         gameRenderer.setWindowWidth(this.getWidth());
         gameRenderer.setWindowHeight(this.getHeight());
         gameRenderer.repaint();
+
     }
-    
-    public SpaceGame(String title) {
-        super(title);
-        this.setResizable(true);
-        this.setSize(WIDTH, HEIGHT);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setFocusableWindowState(true);
-        this.setVisible(true);
-        this.setIgnoreRepaint(false);
-        
-        System.setProperty("java.awt.headless", "false");
-        
-        gameRenderer = new Graphics.Renderer(WIDTH, HEIGHT);
-        
-        mainPanel = new JPanel();
-        mainPanel.add(gameRenderer);
-        mainPanel.setBackground(Color.BLACK);
-        mainPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        mainPanel.setFocusable(true);
-        mainPanel.setVisible(true);
-        mainPanel.setLayout(new GridLayout());
 
-    
-        gameRenderer.setVisible(true);
-        mainPanel.add(gameRenderer);
-        mainPanel.addKeyListener(new spaceGameKeyListener());
-
-        this.add(mainPanel);
+    private void update() {
+        gameEntities.get(0).setxPos(gameEntities.get(0).getxPos() + 1);
     }
 
     public class spaceGameKeyListener implements KeyListener{
-        @Override
-        public void keyTyped(KeyEvent keyEvent) {
-
-        }
 
         @Override
-        public void keyPressed(KeyEvent keyEvent) {
-            if (!keysPressed.contains(keyEvent.getKeyCode())) {
-                keysPressed.add(keyEvent.getKeyCode());
+        public void keyPressed(KeyEvent arg0) {
+
+            if (!keysPressed.contains(arg0.getKeyCode())) {
+                keysPressed.add(new Integer(arg0.getKeyCode()));
             }
+
         }
 
         @Override
-        public void keyReleased(KeyEvent keyEvent) {
-            keysPressed.remove(new Integer(keyEvent.getKeyCode()));
+        public void keyReleased(KeyEvent arg0) {
+            keysPressed.remove(new Integer(arg0.getKeyCode()));
         }
+
+        @Override
+        public void keyTyped(KeyEvent arg0) {
+
+        }
+
+
+    }
+
+    public ArrayList<Entity> getGameEntities() {
+        return gameEntities;
+    }
+
+    public void setGameEntities(ArrayList<Entity> gameEntities) {
+        this.gameEntities = gameEntities;
     }
 
 }
