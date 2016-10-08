@@ -12,12 +12,12 @@ public class Ship extends Entity{
 
     private Bullet[] bullets;
 
-    public Ship() {
+    public Ship(double xPos, double yPos, double angle) {
         this.ammo = init;
-        super.setAngle(0);
-        super.setxPos(0);
-        super.setyPos(0);
-        super.setVelocity(0);
+        super.setAngle(angle);
+        super.setxPos(xPos);
+        super.setyPos(yPos);
+        super.setVelocity(init);
         this.bullets = new Bullet[3];
     }
 

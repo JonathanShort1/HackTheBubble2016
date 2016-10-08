@@ -4,11 +4,11 @@ public class Bullet extends Entity {
 
     private boolean inFlight;
 
-    public Bullet() {
-        super.setxPos(0);
-        super.setyPos(0);
+    public Bullet(double xPos, double yPos, double angle) {
+        super.setxPos(xPos);
+        super.setyPos(yPos);
         super.setVelocity(0);
-        super.setAngle(0);
+        super.setAngle(angle);
         this.inFlight = true;
     }
 
