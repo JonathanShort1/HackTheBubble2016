@@ -123,27 +123,9 @@ public class SpaceGame extends JFrame implements Runnable {
     }
     
     public void update(){
-        //updates
-        KeyListener spacegame = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent keyEvent) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                if (!keysPressed.contains(keyEvent.getKeyCode())) {
-                    keysPressed.add(keyEvent.getKeyCode());
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-                if (keysPressed.contains(keyEvent.getKeyCode())) {
-                    keysPressed.remove(keyEvent.getKeyCode());
-                }
-            }
-        };
+        for (int i = 0; i < keysPressed.size(); i++) {
+            System.out.println(keysPressed.get(i));
+        }
     }
     
     public void render(){
@@ -184,8 +166,30 @@ public class SpaceGame extends JFrame implements Runnable {
     
         gameRenderer.setVisible(true);
         mainPanel.add(gameRenderer);
+        mainPanel.addKeyListener(new spaceGameKeyListener());
 
         this.add(mainPanel);
+    }
+
+    public class spaceGameKeyListener implements KeyListener{
+        @Override
+        public void keyTyped(KeyEvent keyEvent) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent keyEvent) {
+            if (!keysPressed.contains(keyEvent.getKeyCode())) {
+                keysPressed.add(keyEvent.getKeyCode());
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent keyEvent) {
+            if (keysPressed.contains(keyEvent.getKeyCode())) {
+                keysPressed.remove(keyEvent.getKeyCode());
+            }
+        }
     }
 
 }
